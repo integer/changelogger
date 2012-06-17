@@ -1,0 +1,4 @@
+dibi:
+	driver: sqlite3
+	file: . # add path to your db
+	lazy: TRUE

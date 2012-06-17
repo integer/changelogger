@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<link rel="stylesheet" href="./css/screen.css" media="screen" />
+	<link rel="stylesheet" href="./css/print.css" media="print" />
+	<link rel="stylesheet" href="./css/user.css" />
+
+	{*$basePath*} {* plna cesta vuci indexu *}
+	{*$baseUri*} {* komplentni url vcetne http... *}
+
+	<title>Changelogger - {block #title}pro eliminaci byrokracie{/block}</title>
+</head>
+
+<body>
+	<header>
+		{if $user->loggedIn} 
+			{$user->identity->name} (<a href="{link Sign:out}">Odhlásit</a>)
+		{else}
+			<a href="{link Sign:in}">Přihlásit</a> | <a href="{link Sign:up}">Registrovat</a> 
+		{/if}
+		| <a href={link Changelog:}>Úvod</a>
+	</header>
+
+	<div n:foreach="$flashes as $flash" class="flash {$flash->type}">{$flash->message}</div>
+
+	{include #content}
+
+	<a href="./CHANGELOG">CHANGELOG</a> | <a href="./TODO">TODO</a>
+</body>
+</html>

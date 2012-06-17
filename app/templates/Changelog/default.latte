@@ -1,0 +1,15 @@
+{block #content}
+
+<h1>Changelogger</h1>
+
+<h3>pro jednodušší správu changelogů</h3>
+
+<h2>Seznam Projektu</h2>
+
+{if !$user->isLoggedIn()}
+	<p>Seznam projektů je dostupný jen <a href="{link Sign:in}">přihlášeným</a></p>
+{else}
+	<ol n:inner-foreach="$projects as $p">
+		<li><a href="{link Changelog:detail, $p->id_project}">{$p->project_name} - {$p->project_shortname}</a></li>
+	</ol>
+{/if}

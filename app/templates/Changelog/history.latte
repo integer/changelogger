@@ -1,0 +1,16 @@
+
+{block #content}
+
+<h2>Historie projektu {$project->project_name}</h2>
+
+<p>
+	<a href={link Changelog:detail $project->id_project}>Zpět na detail projektu</a>
+</p>
+
+<table class="history" n:inner-foreach="$projectHistory as $p">
+	<tr>
+		<td>{$p->date}</td>
+		<td>{$p->name}</td>
+		<td>{!$p->changelog_text|nl2br}</td>
+	</tr>
+</table>

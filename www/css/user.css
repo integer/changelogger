@@ -1,0 +1,26 @@
+
+div.flash
+{
+	border: 1px dotted gray;
+	margin: 5px;
+	background-color: red;
+}
+
+.flash.info
+{
+	background-color: greenyellow;
+}
+
+table.history td
+{
+	vertical-align: top;
+}
+
+table.history tr:hover
+{
+	background-color: silver;
+}
+
+header {
+	background: silver;
+}

@@ -1,0 +1,28 @@
+
+{block #content}
+
+<a href={link Changelog:}>&lt;&lt; Zpět na seznam projektů</a>
+
+<h2>Detail projektu {$project->project_name}</h2>
+
+<p> 
+	K projektu jsou přiřazeni (a dostávají changelogy) uživatelé: 
+		{foreach $assignUsers as $u}
+			{$u->name}{if !$iterator->last}, {/if}
+		{/foreach}.
+</p>
+
+<p>
+	<b>
+		{control updateChangelog}
+	</b>
+</p>
+
+<p>
+	<a href={link Changelog:history $project->id_project}>Historie změn tohoto changelogu</a>
+</p>
+
+{if in_array( DatabaseAuthenticator::ADMIN,  $user->getIdentity()->getRoles() ) }
+	{control newUserProject}
+{/if}
+

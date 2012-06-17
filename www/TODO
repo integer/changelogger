@@ -1,0 +1,7 @@
+Changelogger - todo, wishlist
+-----------------------------
+
+- registration process and better (more user friendly) configuration
+- automaticaly add "dodelane upravy" at the begining of message
+- Admin: be able to delete someone from mailing list
+- Connect test and production version for better copying changes

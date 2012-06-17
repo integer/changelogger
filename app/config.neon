@@ -1,0 +1,42 @@
+#
+# SECURITY WARNING: it is CRITICAL that this file & directory are NOT accessible directly via a web browser!
+#
+# If you don't protect this directory from direct web access, anybody will be able to see your passwords.
+# http://nette.org/security-warning
+
+
+common:
+
+	includes:
+		- config.db.neon
+
+	#dibi:
+		#dibi loads config from config.db.neon
+
+	parameters:
+		models:  # parameters for models (example)
+			key: val
+
+	php:
+		date.timezone: Europe/Prague
+
+	nette:
+		container:
+			debugger: true
+
+		session:
+			expiration: 14 days
+
+	services:
+		database: @dibi.connection   # just create alias for @dibi.connection
+
+		authenticator:
+			class: DatabaseAuthenticator(@database)
+
+		modelLoader:
+			class: ModelLoader(@container)  # loader picks up only interesting parts from whole container
+
+production < common:
+
+
+development < common:

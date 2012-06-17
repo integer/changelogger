@@ -1,0 +1,16 @@
+/log
+/db
+/nbproject
+/temp/*
+!/temp/.gitignore
+/app/config.db.neon
+.DS_Store
+Thumbs.db
+*.log
+*.bak
+*.orig
+*.swp
+*~
+
+# project specific files
+changeloger.sqlite
