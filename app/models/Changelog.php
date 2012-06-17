@@ -110,7 +110,9 @@ class Changelog extends Base
 	public function sendMail($values, $userId)
 	{
 		$values = $this->prepareMail($values, $userId);
-
+		$subject = "Changelog " . $values->projectInfo["project_name"] . " " . $values->projectInfo["project_version"] . " (" . date("Y-m-d") . ") - " . $values->projectInfo["project_shortname"];
+		$body = "Dobrý den,\n\nzasílám aktuální changelog pro " . $values->projectInfo["project_name"] . " - " . $values->projectInfo["project_shortname"] . "\n\n" . $values->sender["name"];
+		
 		$mail = new \Nette\Mail\Message;
 		foreach($values->recepients as $r)
 		{
@@ -121,10 +123,8 @@ class Changelog extends Base
 		}
 
 		$mail->setFrom($values->sender["email"], $values->sender["name"]);
-		$mail->setSubject("Changelog " . $values->projectInfo["project_name"] . " " . $values->projectInfo["project_version"] . " (" . date("Y-m-d") . ") - " . $values->projectInfo["project_shortname"]);
-
-		$mail->setBody("Dobrý den,\n\nzasílám aktuální changelog pro " . $values->projectInfo["project_name"] . " - " . $values->projectInfo["project_shortname"] . "\n\n" . $values->sender["name"]);
-
+		$mail->setSubject($subject);
+		$mail->setBody($body);
 		$mail->addAttachment('changelog.txt', $values->log);
 		$mail->send();
 	}
