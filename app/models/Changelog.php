@@ -110,9 +110,17 @@ class Changelog extends Base
 	public function sendMail($values, $userId)
 	{
 		$values = $this->prepareMail($values, $userId);
-		$subject = "Changelog " . $values->projectInfo["project_name"] . " " . $values->projectInfo["project_version"] . " (" . date("Y-m-d") . ") - " . $values->projectInfo["project_shortname"];
-		$body = "Dobrý den,\n\nzasílám aktuální changelog pro " . $values->projectInfo["project_name"] . " - " . $values->projectInfo["project_shortname"] . "\n\n" . $values->sender["name"];
+		$subject = "Changelog " . $values->projectInfo["project_name"] . " " 
+			. $values->projectInfo["project_version"] 
+			. " (" . date("Y-m-d") . ") - " 
+			. $values->projectInfo["project_shortname"];
 		
+		$body = new \Nette\Templating\FileTemplate(APP_DIR.'/templates/Changelog/mail.latte');
+		$body->registerFilter(new \Nette\Latte\Engine);
+		$body->projectName = $values->projectInfo["project_name"];
+		$body->projectShortname = $values->projectInfo["project_shortname"];
+		$body->senderName = $values->sender["name"];
+
 		$mail = new \Nette\Mail\Message;
 		foreach($values->recepients as $r)
 		{
